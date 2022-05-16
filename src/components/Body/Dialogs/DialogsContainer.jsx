@@ -11,7 +11,7 @@ const mapStateToProps = (state) => {
         }
     )
 }
-const MapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
     return ({
             onSendMessageClick: () => {
                 dispatch(sendNewMessageBodyCreator())
@@ -23,6 +23,6 @@ const MapDispatchToProps = (dispatch) => {
     )
 }
 
-const DialogsContainer = connect(mapStateToProps, MapDispatchToProps)(Dialogs)
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogsContainer;
