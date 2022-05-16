@@ -6,7 +6,7 @@ import News from "./News/News";
 import Music from "./Music/Music";
 import Setting from "./Setting/Setting";
 import DialogsContainer from "./Dialogs/DialogsContainer";
-import Users from "./Users/Users";
+import UsersContainer from "./Users/UsersContainer";
 
 const Body = () => {
     return (
@@ -15,7 +15,7 @@ const Body = () => {
                 <Route path={'/'} element={<Navigate to="/profile"/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/dialogs" element={<DialogsContainer/>}/>
-                <Route path="/users" element={<UsersContainer />}/>
+                <Route path="/users" element={<UsersContainer/>}/>
                 <Route path="/news" element={<News/>}/>
                 <Route path="/music" element={<Music/>}/>
                 <Route path="/setting" element={<Setting/>}/>
