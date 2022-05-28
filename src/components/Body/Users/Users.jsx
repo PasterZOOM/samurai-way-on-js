@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Users.module.css'
-import userPhoto from './img/userPhoto.png'
+import userPhoto from '../../../assets/images/userPhoto.png'
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
