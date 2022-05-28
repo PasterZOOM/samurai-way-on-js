@@ -7,7 +7,6 @@ const Description = (props) => {
     if (!props.profile) {
         return <Preload/>
     }
-    debugger
     return (
         <div className={s.content}>
             <img src={props.profile.photos.large} alt="avatar"/>
