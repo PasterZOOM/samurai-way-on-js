@@ -11,3 +11,7 @@ let rootReducer = combineReducers({
 })
 
 export let store = createStore(rootReducer)
+
+window.store = store
+
+export default store

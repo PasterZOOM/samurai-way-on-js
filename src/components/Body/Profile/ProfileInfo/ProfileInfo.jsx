@@ -4,11 +4,11 @@ import HatPage from "./HatPage/HatPage";
 import Description from "./Description/Description";
 
 
-const ProfileInfo = () => {
+const ProfileInfo = (props) => {
     return (
         <div className={s.content}>
             <HatPage/>
-            <Description/>
+            <Description profile={props.profile}/>
         </div>
     )
 
