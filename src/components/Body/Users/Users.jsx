@@ -75,7 +75,7 @@ const Users = (props) => {
             </div>)
             }
         </div>
-    );
+    )
 
 }
 
