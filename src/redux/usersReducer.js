@@ -1,4 +1,4 @@
-import {usersAPI} from "../api/api";
+import {usersAPI} from '../api/api'
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -80,8 +80,8 @@ export const follow = (userId) => (dispatch) => {
             if (response.data.resultCode === 0) {
                 dispatch(followSuccess(userId))
             }
-            dispatch(toggleFollowingProgress(false, userId))
         })
+        .finally(() => dispatch(toggleFollowingProgress(false, userId)))
 }
 export const unfollow = (userId) => (dispatch) => {
     dispatch(toggleFollowingProgress(true, userId))
@@ -90,6 +90,6 @@ export const unfollow = (userId) => (dispatch) => {
             if (response.data.resultCode === 0) {
                 dispatch(unfollowSuccess(userId))
             }
-            dispatch(toggleFollowingProgress(false, userId))
         })
+        .finally(() => dispatch(toggleFollowingProgress(false, userId)))
 }

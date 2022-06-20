@@ -1,11 +1,9 @@
-import React from 'react';
-import s from "./Dialogs.module.css";
-import Dialog from "./Dialog/Dialog";
-import Message from "./Message/Message";
-import {Navigate} from "react-router-dom";
+import React from 'react'
+import s from './Dialogs.module.css'
+import Dialog from './Dialog/Dialog'
+import Message from './Message/Message'
 
 const Dialogs = (props) => {
-
 
 
     let dialogsElement = props.dialogs.map(d => <Dialog key={d.id}
@@ -23,8 +21,6 @@ const Dialogs = (props) => {
         let body = e.currentTarget.value
         props.onNewMessageChange(body)
     }
-
-    if (!props.isAuth) return <Navigate to="/login"/>
 
     return (
         <div className={s.dialogs}>
@@ -48,4 +44,4 @@ const Dialogs = (props) => {
     )
 }
 
-export default Dialogs;
+export default Dialogs
