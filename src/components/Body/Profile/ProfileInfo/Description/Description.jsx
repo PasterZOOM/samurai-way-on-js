@@ -1,6 +1,7 @@
-import React from 'react';
-import s from './Description.module.css';
-import Preload from "../../../../command/Preload/Preload";
+import React from 'react'
+import s from './Description.module.css'
+import Preload from '../../../../command/Preload/Preload'
+import {ProfileStatus} from './ProfileStatus/ProfileStatus'
 
 
 const Description = (props) => {
@@ -10,6 +11,7 @@ const Description = (props) => {
     return (
         <div className={s.content}>
             <img src={props.profile.photos.large} alt="avatar"/>
+            <ProfileStatus status={'Hello my friends'}/>
             <h2>{props.profile.fullName}</h2>
             <p>
                 <b>About me: </b>
@@ -17,7 +19,8 @@ const Description = (props) => {
             </p>
             <p>
                 <b>Looking for a job: </b>
-                {props.profile.lookingForAJob ? <span>{props.profile.lookingForAJobDescription}</span> : <span>no</span>}
+                {props.profile.lookingForAJob ? <span>{props.profile.lookingForAJobDescription}</span> :
+                    <span>no</span>}
             </p>
             <div>
                 <b>Contacts:</b>
@@ -29,12 +32,10 @@ const Description = (props) => {
                 {props.profile.contacts.youtube && <p><b>YouTube:</b> {props.profile.contacts.youtube}</p>}
                 {props.profile.contacts.github && <p><b>GitHub:</b> {props.profile.contacts.github}</p>}
                 {props.profile.contacts.mainLink && <p><b>MainLink:</b> {props.profile.contacts.mainLink}</p>}
-
             </div>
-
         </div>
     )
-
 }
 
-export default Description;
+export default Description
+
