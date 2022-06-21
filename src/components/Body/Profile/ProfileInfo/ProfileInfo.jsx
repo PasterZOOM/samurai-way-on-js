@@ -7,7 +7,7 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.content}>
             {/*<HatPage/>*/}
-            <Description profile={props.profile}/>
+            <Description profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
         </div>
     )
 

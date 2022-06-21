@@ -11,7 +11,7 @@ const Description = (props) => {
     return (
         <div className={s.content}>
             <img src={props.profile.photos.large} alt="avatar"/>
-            <ProfileStatus status={'Hello my friends'}/>
+            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
             <h2>{props.profile.fullName}</h2>
             <p>
                 <b>About me: </b>
