@@ -1,7 +1,6 @@
-import {v1} from "uuid";
+import {v1} from 'uuid'
 
-const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE_NEW_MESSAGE_BODY';
+const SEND_MESSAGE = 'SEND_MESSAGE'
 
 let initialState = {
     dialogs: [
@@ -14,28 +13,19 @@ let initialState = {
         {id: v1(), message: 'Hi'},
         {id: v1(), message: 'How are you'},
         {id: v1(), message: 'Thanks'}],
-    newMessageBody: ''
 }
 
 export const dialogsReducer = (state = initialState, action) => {
-
     switch (action.type) {
         case SEND_MESSAGE:
-            let newMessage = {id: v1(), message: state.newMessageBody}
+            let newMessage = {id: v1(), message: action.newMessageBody}
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newMessageBody: ''
-            }
-        case UPDATE_NEW_MESSAGE_BODY:
-            return {
-                ...state,
-                newMessageBody: action.body
             }
         default:
             return state
     }
 }
 
-export const sendNewMessageBodyCreator = () => ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator = (body) => ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+export const sendNewMessageBodyCreator = (newMessageBody) => ({type: SEND_MESSAGE, newMessageBody})

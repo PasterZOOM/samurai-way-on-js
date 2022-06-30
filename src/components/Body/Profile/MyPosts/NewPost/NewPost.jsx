@@ -1,28 +1,31 @@
 import React from 'react';
+import {Field, reduxForm} from 'redux-form'
 
 const NewPost = (props) => {
 
-    const addPost = () => {
-        props.addPost()
-    }
-
-    const updateNewPostText = (e) => {
-        let text = e.currentTarget.value
-        props.updateNewPostText(text)
+    const addNewPost = (values) => {
+        props.addPost(values.newPostText)
     }
 
     return (
         <div>
-            <div>
-                <textarea value={props.newPostText}
-                          onChange={updateNewPostText}
-                          placeholder={'Enter your text'}/>
-            </div>
-            <div>
-                <button onClick={addPost}>New Post</button>
-            </div>
+            <AddNewPostFormRedux onSubmit={addNewPost}/>
         </div>
     )
 }
+const AddPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field placeholder={'New post text'} component={'textarea'} name={'newPostText'}/>
+            </div>
+            <div>
+                <button>Add Post</button>
+            </div>
+        </form>
+    )
+}
+const AddNewPostFormRedux = reduxForm({form: 'ProfileAddNewPostFormRedux'})(AddPostForm)
+
 
 export default NewPost;

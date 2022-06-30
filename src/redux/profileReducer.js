@@ -2,7 +2,6 @@ import {v1} from 'uuid'
 import {profileAPI} from '../api/api'
 
 const ADD_POST = 'ADD_POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT'
 const SET_USER_PROFILE = 'SET_USER_PROFILE'
 const SET_STATUS = 'SET_STATUS'
 
@@ -10,7 +9,6 @@ let initialState = {
     posts: [
         {id: v1(), message: 'Its my first post', likes: 32},
         {id: v1(), message: 'Its my second post', likes: 54}],
-    newPostText: '',
     profile: null,
     status: ''
 }
@@ -18,16 +16,11 @@ let initialState = {
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_POST:
-            let newPost = {id: v1(), message: state.newPostText, likes: 0}
+            let newPost = {id: v1(), message: action.newPostText, likes: 0}
             return {
                 ...state,
                 posts: [newPost, ...state.posts],
                 newPostText: ''
-            }
-        case UPDATE_NEW_POST_TEXT:
-            return {
-                ...state,
-                newPostText: action.newText
             }
         case SET_USER_PROFILE:
             return {...state, profile: action.profile}
@@ -38,10 +31,9 @@ export const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
 export const getUserProfile = (userId) => (dispatch) => {
     profileAPI.getProfile(userId)
@@ -50,7 +42,7 @@ export const getUserProfile = (userId) => (dispatch) => {
         })
 }
 export const getStatus = (userId) => (dispatch) => {
-    profileAPI.getState(userId)
+    profileAPI.getStatus(userId)
         .then(response => {
             dispatch(setStatus(response.data))
         })
