@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './Description.module.css'
-import Preload from '../../../../command/Preload/Preload'
+import Preload from '../../../../common/Preload/Preload'
 import {ProfileStatus} from './ProfileStatus/ProfileStatus'
 
 
