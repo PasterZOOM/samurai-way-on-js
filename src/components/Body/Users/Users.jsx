@@ -1,7 +1,7 @@
-import React from 'react';
+import React from 'react'
 import s from './Users.module.css'
 import userPhoto from '../../../assets/images/userPhoto.png'
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom'
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -23,8 +23,9 @@ const Users = (props) => {
     return (
         <div>
             {pages.map(p =>
-                <span className={props.currentPage === p && s.selectedPage}
-                      onClick={() => props.onPageChanged(p)}>
+                <span className={props.currentPage !== p ? s.selectedPage : ''}
+                      onClick={() => props.onPageChanged(p)}
+                      key={p}>
                         {p}
                     </span>
             )}
@@ -64,4 +65,4 @@ const Users = (props) => {
 
 }
 
-export default Users;
+export default Users

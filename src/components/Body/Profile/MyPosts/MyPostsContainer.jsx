@@ -7,6 +7,7 @@ const mapStateToProps = (state) => {
         posts: state.profilePage.posts
     })
 }
+
 const mapDispatchToProps = (dispatch) => {
     return ({
             addPost: (newPostText) => {
