@@ -27,7 +27,7 @@ export const setAuthUserDate = (userId, email, login, isAuth) => ({
     type: SET_USER_DARE,
     payload: {userId, email, login, isAuth}
 })
-export const getAuthUserDate = () => (dispatch) => {
+export const getAuthUserDate = () => (dispatch) =>
     authAPI.me()
         .then(response => {
             if (response.data.resultCode === 0) {
@@ -35,8 +35,8 @@ export const getAuthUserDate = () => (dispatch) => {
                 dispatch(setAuthUserDate(id, email, login, true))
             }
         })
-}
-export const login = (email, password, rememberMe) => (dispatch) => {
+
+export const login = (email, password, rememberMe) => (dispatch) =>
     authAPI.login(email, password, rememberMe)
         .then(response => {
             if (response.data.resultCode === 0) {
@@ -46,12 +46,11 @@ export const login = (email, password, rememberMe) => (dispatch) => {
                 dispatch(stopSubmit('login', {_error: message}))
             }
         })
-}
-export const logout = () => (dispatch) => {
+
+export const logout = () => (dispatch) =>
     authAPI.logout()
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(setAuthUserDate(null, null, null, false))
             }
         })
-}

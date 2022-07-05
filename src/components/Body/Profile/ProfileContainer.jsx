@@ -12,6 +12,9 @@ class ProfileContainer extends React.Component {
         let {userId} = this.props.params
         if (!userId) {
             userId = this.props.authorizedUserId
+            if (!userId) {
+                this.props.history.push('/profile')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)
@@ -33,7 +36,7 @@ const mapStateToProps = (state) => ({
     isAuth: state.auth.isAuth
 })
 
-const WithUrlDataContainerComponent = (Component) => {
+export const WithUrlDataContainerComponent = (Component) => {
     function ComponentWithParams(props) {
         return <Component {...props} params={useParams()}/>
     }
