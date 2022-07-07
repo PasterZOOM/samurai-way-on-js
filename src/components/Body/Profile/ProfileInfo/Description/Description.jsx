@@ -1,7 +1,7 @@
 import React from 'react'
 import s from './Description.module.css'
 import Preload from '../../../../common/Preload/Preload'
-import {ProfileStatus} from './ProfileStatus/ProfileStatus'
+import {ProfileStatusWithHooks} from './ProfileStatus/ProfileStatusWithHooks'
 
 
 const Description = (props) => {
@@ -11,7 +11,10 @@ const Description = (props) => {
     return (
         <div className={s.content}>
             <img src={props.profile.photos.large} alt="avatar"/>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+
+            {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+
             <h2>{props.profile.fullName}</h2>
             <p>
                 <b>About me: </b>
