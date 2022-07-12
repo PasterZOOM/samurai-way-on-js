@@ -1,9 +1,9 @@
-import React from 'react';
-import Post from "./Post/Post";
-import s from "./MyPosts.module.css";
-import NewPost from "./NewPost/NewPost";
+import React from 'react'
+import Post from './Post/Post'
+import s from './MyPosts.module.css'
+import NewPost from './NewPost/NewPost'
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
     let postElement =
         props.posts.map(p => <Post key={p.id}
                                    message={p.message}
@@ -15,6 +15,6 @@ const MyPosts = (props) => {
             {postElement}
         </div>
     )
-}
+})
 
-export default MyPosts;
+export default MyPosts
