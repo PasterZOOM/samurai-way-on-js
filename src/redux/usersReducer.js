@@ -62,33 +62,27 @@ export const toggleFollowingProgress = (followingInProgress, userId) => ({
     userId
 })
 
-export const requestUsers = (page, pageSize) => (dispatch) => {
+export const requestUsers = (page, pageSize) => async (dispatch) => {
     dispatch(setCurrentPage(page))
     dispatch(toggleIsFetching(true))
-    usersAPI.getUsers(page, pageSize)
-        .then(data => {
-            dispatch(toggleIsFetching(false))
-            dispatch(setUsers(data.items))
-            dispatch(setTotalUsersCount(data.totalCount))
-        })
+    const data = await usersAPI.getUsers(page, pageSize)
+    dispatch(toggleIsFetching(false))
+    dispatch(setUsers(data.items))
+    dispatch(setTotalUsersCount(data.totalCount))
 }
-export const follow = (userId) => (dispatch) => {
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreator) => {
     dispatch(toggleFollowingProgress(true, userId))
-    usersAPI.follow(userId)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(followSuccess(userId))
-            }
-        })
-        .finally(() => dispatch(toggleFollowingProgress(false, userId)))
+    const response = await apiMethod(userId)
+    if (response.data.resultCode === 0) {
+        dispatch(actionCreator(userId))
+    }
+    dispatch(toggleFollowingProgress(false, userId))
 }
-export const unfollow = (userId) => (dispatch) => {
-    dispatch(toggleFollowingProgress(true, userId))
-    usersAPI.unfollow(userId)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(unfollowSuccess(userId))
-            }
-        })
-        .finally(() => dispatch(toggleFollowingProgress(false, userId)))
+
+export const follow = (userId) => async (dispatch) => {
+    followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess)
+}
+
+export const unfollow = (userId) => async (dispatch) => {
+    followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess)
 }

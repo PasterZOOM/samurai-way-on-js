@@ -19,5 +19,3 @@ let rootReducer = combineReducers({
 export let store = createStore(rootReducer, applyMiddleware(thunk))
 
 window.store = store
-
-export default store
