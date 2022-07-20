@@ -21,7 +21,7 @@ export const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged
     }
 
     const inChangeInputNumberHandler = (e) => {
-        if (e.currentTarget.valueAsNumber > pagesCount) setPage(pagesCount)
+        if (e.currentTarget.valueAsNumber > pagesCount) setPage(Math.floor(pagesCount))
         else if (e.currentTarget.valueAsNumber < 1) setPage(1)
         else setPage(e.currentTarget.valueAsNumber)
     }
@@ -41,7 +41,7 @@ export const Paginator = ({totalItemsCount, pageSize, currentPage, onPageChanged
             <input type="number" min={1} max={pagesCount} value={page}
                    onChange={inChangeInputNumberHandler}
                    onKeyUp={onKeyEnter}/>
-            <button onClick={() => onPageChanged(page)}>go</button>
+            <button onClick={() => onPageChanged(Math.floor(page))}>go</button>
         </div>
     )
 }
